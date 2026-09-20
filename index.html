@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <title>For You | بوكيه ورد احترافي</title>
+    <!-- استدعاء خط عربي وأجنبي أنيق من جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -13,148 +14,136 @@
         }
 
         body {
-            background-color: #120c1f;
+            /* خلفية متدرجة فخمة تناسب الإعلانات */
+            background: radial-gradient(circle at center, #2e1a26 0%, #0d090c 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
-            font-family: 'Sacramento', cursive;
+            color: #fff;
+            padding: 20px;
         }
 
-        /* Title */
-        h1 {
-            color: #ffb6c1;
+        /* تنسيق العنوان "For You ♡" */
+        .title {
+            font-family: 'Great Vibes', cursive; /* خط أجنبي رومانسي */
+            color: #ffb3c1;
             font-size: 5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(255, 179, 193, 0.7), 0 0 30px rgba(255, 77, 109, 0.4);
             opacity: 0;
-            animation: fadeIn 2s ease forwards;
-            animation-delay: 0.3s;
+            transform: translateY(-20px);
+            animation: fadeInTitle 2s ease-out forwards;
+            animation-delay: 0.5s;
+            text-align: center;
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeInTitle {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* حاوية بوكيه الورد الـ SVG */
+        .bouquet-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px; /* حجم مناسب للإعلان */
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* إضافة هالة ضوئية خلف البوكيه */
+            filter: drop-shadow(0 0 25px rgba(255, 143, 163, 0.3));
+        }
+
+        /* كود الـ SVG للبوكيه الاحترافي مع حركة الظهور */
+        .bouquet-svg {
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transform: scale(0.8) translateY(30px);
+            animation: bloomEffect 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation-delay: 1.2s;
+        }
+
+        /* حركة تفتح وزهر البوكيه */
+        @keyframes bloomEffect {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* تنسيق الجملة العربية الاختيارية تحت البوكيه */
+        .subtitle {
+            font-family: 'Cairo', sans-serif;
+            color: #ffdae0;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeInSubtitle 1.5s ease forwards;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes fadeInSubtitle {
             to { opacity: 1; }
         }
 
-        /* Canvas for Bouquet Container */
-        .bouquet {
-            position: relative;
-            width: 300px;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        /* Ribbon Base */
-        .ribbon {
-            position: absolute;
-            bottom: 30px;
-            width: 0;
-            height: 0;
-            border-left: 45px solid transparent;
-            border-right: 45px solid transparent;
-            border-bottom: 130px solid #f7aef8;
-            z-index: 10;
-            opacity: 0;
-            transform: scale(0);
-            animation: popRibbon 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            animation-delay: 4s;
-            filter: drop-shadow(0 5px 15px rgba(247, 174, 248, 0.4));
-        }
-
-        @keyframes popRibbon {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Tulip Stems */
-        .stem {
-            position: absolute;
-            width: 5px;
-            height: 0;
-            background: linear-gradient(to top, #2d6a4f, #52b788);
-            border-radius: 5px;
-            bottom: 60px;
-            animation: growStem 1.2s ease forwards;
-        }
-
-        .s1 { left: 100px; transform: rotate(-18deg); animation-delay: 0.8s; }
-        .s2 { left: 125px; transform: rotate(-8deg);  animation-delay: 1.1s; }
-        .s3 { left: 150px; transform: rotate(0deg);   animation-delay: 1.4s; }
-        .s4 { left: 175px; transform: rotate(8deg);   animation-delay: 1.7s; }
-        .s5 { left: 200px; transform: rotate(18deg);  animation-delay: 2.0s; }
-
-        @keyframes growStem {
-            to { height: 210px; }
-        }
-
-        /* Tulip Heads */
-        .tulip {
-            position: absolute;
-            width: 44px;
-            height: 60px;
-            background: linear-gradient(135deg, #ff8fa3, #ff4d6d);
-            border-radius: 0 0 22px 22px;
-            opacity: 0;
-            transform: scale(0);
-            animation: bloomTulip 0.8s ease forwards;
-            box-shadow: 0 0 15px rgba(255, 77, 109, 0.5);
-        }
-
-        .tulip::before, .tulip::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 22px;
-            height: 45px;
-            background: #ff758f;
-            border-radius: 22px 22px 0 0;
-        }
-
-        .tulip::before { left: 0; transform: rotate(-10deg); }
-        .tulip::after { right: 0; transform: rotate(10deg); background: #c9184a; }
-
-        .t1 { top: 110px; left: 65px;  animation-delay: 2.2s; }
-        .t2 { top: 80px;  left: 105px; animation-delay: 2.5s; }
-        .t3 { top: 60px;  left: 150px; transform: translateX(-50%); animation-delay: 2.8s; }
-        .t4 { top: 80px;  left: 185px; animation-delay: 3.1s; }
-        .t5 { top: 110px; left: 225px; animation-delay: 3.4s; }
-
-        @keyframes bloomTulip {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
     </style>
 </head>
 <body>
 
-    <h1>For You ♡</h1>
+    <!-- العنوان الاحترافي -->
+    <div class="title">For You ♡</div>
 
-    <div class="bouquet">
-        <!-- Stems -->
-        <div class="stem s1"></div>
-        <div class="stem s2"></div>
-        <div class="stem s3"></div>
-        <div class="stem s4"></div>
-        <div class="stem s5"></div>
+    <!-- حاوية البوكيه الـ SVG (هذا الكود يرسم الورد بدقة Vectors واقعية) -->
+    <div class="bouquet-container">
+        <!-- كود SVG لبوكيه ورد وردي وأنيق -->
+        <svg class="bouquet-svg" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- السيقان والأوراق -->
+            <path d="M256 384C256 384 216 314 192 272C168 230 156 186 156 186" stroke="#4B6F44" stroke-width="12" stroke-linecap="round"/>
+            <path d="M256 384C256 384 296 314 320 272C344 230 356 186 356 186" stroke="#4B6F44" stroke-width="12" stroke-linecap="round"/>
+            <path d="M256 384V160" stroke="#4B6F44" stroke-width="12" stroke-linecap="round"/>
+            
+            <!-- أوراق خضراء إضافية -->
+            <path d="M210 320C210 320 180 300 160 300C140 300 130 310 130 320C130 330 150 340 170 340C190 340 210 320 210 320Z" fill="#669966"/>
+            <path d="M302 320C302 320 332 300 352 300C372 300 382 310 382 320C382 330 362 340 342 340C322 340 302 320 302 320Z" fill="#669966"/>
 
-        <!-- Tulips -->
-        <div class="tulip t1"></div>
-        <div class="tulip t2"></div>
-        <div class="tulip t3"></div>
-        <div class="tulip t4"></div>
-        <div class="tulip t5"></div>
+            <!-- الوردة المركزية الكبيرة (بتلات متداخلة واقعية) -->
+            <circle cx="256" cy="160" r="70" fill="#FF8FA3"/>
+            <path d="M256 100C220 100 190 130 190 160C190 190 220 220 256 220C292 220 322 190 322 160C322 130 292 100 256 100ZM256 120C276 120 292 136 292 160C292 184 276 200 256 200C236 200 220 184 220 160C220 136 236 120 256 120Z" fill="#FF4D6D"/>
+            <path d="M256 140C245 140 236 149 236 160C236 171 245 180 256 180C267 180 276 171 276 160C276 149 267 140 256 140Z" fill="#C9184A"/>
 
-        <!-- Ribbon Wrap -->
-        <div class="ribbon"></div>
+            <!-- ورقة جانبية يسار -->
+            <circle cx="176" cy="200" r="50" fill="#FFB3C1"/>
+            <path d="M176 160C150 160 130 180 130 200C130 220 150 240 176 240C202 240 222 220 222 200C222 180 202 160 176 160ZM176 175C190 175 202 186 202 200C202 214 190 225 176 225C162 225 150 214 150 200C150 186 162 175 176 175Z" fill="#FF8FA3"/>
+
+            <!-- ورقة جانبية يمين -->
+            <circle cx="336" cy="200" r="50" fill="#FFB3C1"/>
+            <path d="M336 160C310 160 290 180 290 200C290 220 310 240 336 240C362 240 382 220 382 200C382 180 362 160 336 160ZM336 175C350 175 362 186 362 200C362 214 350 225 336 225C322 225 310 214 310 200C310 186 322 175 336 175Z" fill="#FF8FA3"/>
+
+            <!-- وردة صغيرة فوق يسار -->
+            <circle cx="216" cy="110" r="30" fill="#FFC2D1"/>
+            <circle cx="216" cy="110" r="15" fill="#FF8FA3"/>
+
+            <!-- وردة صغيرة فوق يمين -->
+            <circle cx="296" cy="110" r="30" fill="#FFC2D1"/>
+            <circle cx="296" cy="110" r="15" fill="#FF8FA3"/>
+
+            <!-- ربطة البوكيه (شريط ساتان) -->
+            <path d="M200 360H312L290 420H222L200 360Z" fill="#FF758F"/>
+            <rect x="236" y="360" width="40" height="60" rx="5" fill="#C9184A"/>
+            <circle cx="256" cy="390" r="10" fill="#FFB3C1"/>
+
+        </svg>
     </div>
+
+    <!-- جملة عربية اختيارية للإعلان -->
+    <div class="subtitle">هدية خاصة تليق بكِ</div>
 
 </body>
 </html>
