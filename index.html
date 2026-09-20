@@ -1,146 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background-color: #0f0f1a;
+            background: radial-gradient(circle, #2b111e 0%, #0f0a12 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
+            font-family: 'Great Vibes', cursive;
         }
 
-        /* Title Animation */
+        /* Title */
         h1 {
-            color: #ff8fa3;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(255, 143, 163, 0.6);
+            color: #ffb3c1;
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 179, 193, 0.8), 0 0 40px rgba(255, 77, 109, 0.4);
             opacity: 0;
-            animation: fadeIn 2s forwards;
+            transform: translateY(-20px);
+            animation: fadeInTitle 2s ease-in-out forwards;
             animation-delay: 0.5s;
+            text-align: center;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        .container {
-            position: relative;
-            width: 320px;
-            height: 380px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        /* Ribbon / Wrap Animation */
-        .wrap {
-            position: absolute;
-            bottom: 20px;
-            width: 0;
-            height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 120px solid #ffccd5;
-            z-index: 10;
-            opacity: 0;
-            animation: showWrap 1s forwards;
-            animation-delay: 4.5s;
-        }
-
-        .bow {
-            position: absolute;
-            bottom: 15px;
-            width: 30px;
-            height: 15px;
-            background-color: #ff4d6d;
-            border-radius: 10px;
-            z-index: 11;
-            opacity: 0;
-            animation: showWrap 1s forwards;
-            animation-delay: 5s;
-        }
-
-        @keyframes showWrap {
-            to { opacity: 1; }
-        }
-
-        /* Stem Animation */
-        .stem {
-            position: absolute;
-            width: 6px;
-            height: 0;
-            background-color: #52b788;
-            border-radius: 3px;
-            bottom: 40px;
-            animation: growStem 1s forwards;
-        }
-
-        .s1 { left: 110px; transform: rotate(-15deg); animation-delay: 1s; }
-        .s2 { left: 135px; transform: rotate(-5deg);  animation-delay: 1.3s; }
-        .s3 { left: 160px; transform: rotate(0deg);   animation-delay: 1.6s; }
-        .s4 { left: 185px; transform: rotate(5deg);   animation-delay: 1.9s; }
-        .s5 { left: 210px; transform: rotate(15deg);  animation-delay: 2.2s; }
-
-        @keyframes growStem {
-            to { height: 180px; }
-        }
-
-        /* Rose Flower Base */
-        .rose {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            opacity: 0;
-            transform: scale(0);
-            animation: bloom 0.8s forwards;
-        }
-
-        .r1 { top: 120px; left: 80px;  animation-delay: 2s; }
-        .r2 { top: 90px;  left: 115px; animation-delay: 2.3s; }
-        .r3 { top: 70px;  left: 155px; animation-delay: 2.6s; }
-        .r4 { top: 90px;  left: 195px; animation-delay: 2.9s; }
-        .r5 { top: 120px; left: 230px; animation-delay: 3.2s; }
-
-        @keyframes bloom {
+        @keyframes fadeInTitle {
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateY(0);
             }
         }
 
-        /* Petals Drawing */
-        .petal {
-            position: absolute;
-            width: 25px;
-            height: 40px;
-            background-color: #ff758f;
-            border-radius: 20px 20px 0 0;
-            box-shadow: 0 0 5px rgba(255, 77, 109, 0.4);
+        /* Bouquet Container */
+        .bouquet-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .p1 { transform: rotate(0deg) translate(0, -10px); background-color: #ff4d6d; }
-        .p2 { transform: rotate(72deg) translate(0, -10px); }
-        .p3 { transform: rotate(144deg) translate(0, -10px); background-color: #ff8fa3; }
-        .p4 { transform: rotate(216deg) translate(0, -10px); }
-        .p5 { transform: rotate(288deg) translate(0, -10px); background-color: #c9184a; }
+        /* HD Bouquet Image Animation */
+        .bouquet-img {
+            width: 320px;
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
+            opacity: 0;
+            transform: scale(0.6) translateY(50px);
+            animation: bloomEffect 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 1.2s;
+        }
 
-        .center {
+        @keyframes bloomEffect {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Sparkles / Glow background */
+        .glow {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            width: 20px;
-            height: 20px;
-            background-color: #fff0f3;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 143, 163, 0.25) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
-            z-index: 5;
+            z-index: -1;
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 0.9; }
         }
     </style>
 </head>
@@ -148,34 +90,10 @@
 
     <h1>For You ♡</h1>
 
-    <div class="container">
-        <!-- Stems -->
-        <div class="stem s1"></div>
-        <div class="stem s2"></div>
-        <div class="stem s3"></div>
-        <div class="stem s4"></div>
-        <div class="stem s5"></div>
-
-        <!-- Roses -->
-        <div class="rose r1">
-            <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div><div class="center"></div>
-        </div>
-        <div class="rose r2">
-            <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div><div class="center"></div>
-        </div>
-        <div class="rose r3">
-            <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div><div class="center"></div>
-        </div>
-        <div class="rose r4">
-            <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div><div class="center"></div>
-        </div>
-        <div class="rose r5">
-            <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div><div class="petal p5"></div><div class="center"></div>
-        </div>
-
-        <!-- Bouquet Wrap -->
-        <div class="wrap"></div>
-        <div class="bow"></div>
+    <div class="bouquet-container">
+        <div class="glow"></div>
+        <!-- صورة بوكيه ورد طبيعي واحترافي بدقة عالية -->
+        <img class="bouquet-img" src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?q=80&w=600&auto=format&fit=crop" alt="Pink Rose Bouquet">
     </div>
 
 </body>
